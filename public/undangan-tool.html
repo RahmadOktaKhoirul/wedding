@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tool Broadcast Undangan – Renata & Tata</title>
+  <!-- Load SheetJS for Excel Reading -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0f0a0f; color: #f3f0f5; min-height: 100vh; padding: 24px 16px; }
+    h1 { text-align: center; font-size: 1.2rem; color: #f9a8d4; letter-spacing: 0.1em; margin-bottom: 4px; }
+    .subtitle { text-align: center; font-size: 0.75rem; color: #6b7280; margin-bottom: 24px; letter-spacing: 0.05em; }
+
+    .base-url-row { display: flex; gap: 8px; align-items: center; margin-bottom: 20px; }
+    .base-url-row label { font-size: 0.75rem; color: #9ca3af; white-space: nowrap; }
+    .base-url-row input { flex: 1; background: #1a0d18; border: 1px solid #4a1942; color: #f3f0f5; padding: 8px 12px; border-radius: 8px; font-size: 0.8rem; }
+
+    /* Import section */
+    .import-section {
+      background: #1a0d18;
+      border: 1px solid #4a1942;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .import-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #f9a8d4;
+    }
+    .import-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-import {
+      background: #2d1a2d;
+      color: #f9a8d4;
+      border: 1px solid #4a1942;
+      padding: 8px 16px;
+      font-size: 0.72rem;
+      cursor: pointer;
+    }
+    .btn-import:hover {
+      background: #4a1942;
+      border-color: #ec4899;
+    }
+    .import-info {
+      font-size: 0.65rem;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid #2d1a2d; max-height: 500px; }
+    table { width: 100%; border-collapse: collapse; min-width: 700px; }
+    thead tr { background: #1a0d18; position: sticky; top: 0; z-index: 10; }
+    th { padding: 10px 14px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: #f9a8d4; text-align: left; border-bottom: 1px solid #2d1a2d; }
+    td { padding: 8px 14px; border-bottom: 1px solid #1a0d18; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #1a0d18; }
+
+    td input { background: transparent; border: none; color: #f3f0f5; font-size: 0.82rem; width: 100%; outline: none; padding: 2px 0; }
+    td input:focus { border-bottom: 1px solid #ec4899; }
+
+    .url-cell { font-size: 0.72rem; color: #a78bfa; word-break: break-all; max-width: 280px; }
+    
+    .btn { cursor: pointer; border: none; border-radius: 6px; padding: 5px 10px; font-size: 0.72rem; font-weight: 700; transition: opacity 0.2s; }
+    .btn:hover { opacity: 0.8; }
+    .btn-copy { background: #4a1942; color: #f9a8d4; }
+    .btn-wa { background: #15803d; color: #fff; }
+    .btn-add { background: #ec4899; color: #fff; padding: 8px 20px; font-size: 0.8rem; margin-top: 14px; border-radius: 8px; display: block; }
+    .btn-del { background: transparent; color: #6b7280; font-size: 1rem; padding: 2px 8px; }
+    .btn-del:hover { color: #ef4444; }
+
+    .actions-row { display: flex; gap: 8px; margin-top: 16px; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+
+    /* Modal */
+    .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; align-items: center; justify-content: center; padding: 16px; }
+    .modal-bg.open { display: flex; }
+    .modal { background: #1a0d18; border: 1px solid #4a1942; border-radius: 16px; padding: 24px; max-width: 520px; width: 100%; position: relative; }
+    .modal h2 { font-size: 0.85rem; color: #f9a8d4; margin-bottom: 12px; letter-spacing: 0.05em; }
+    .modal textarea { width: 100%; background: #0f0a0f; border: 1px solid #2d1a2d; color: #f3f0f5; border-radius: 8px; padding: 12px; font-size: 0.78rem; line-height: 1.7; min-height: 280px; resize: vertical; outline: none; font-family: inherit; }
+    .modal-footer { display: flex; gap: 8px; margin-top: 12px; justify-content: flex-end; }
+    .btn-close { background: #2d1a2d; color: #9ca3af; }
+
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #ec4899; color: #fff; padding: 8px 20px; border-radius: 99px; font-size: 0.78rem; font-weight: 700; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 200; }
+    .toast.show { opacity: 1; }
+
+    .no-rows { text-align: center; padding: 32px; color: #4b5563; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+
+<h1>🎬 WEDFLIX — Tool Broadcast Undangan</h1>
+<p class="subtitle">Renata &amp; Tata · 2 Oktober 2026</p>
+
+<div class="base-url-row">
+  <label>Base URL:</label>
+  <input id="baseUrl" value="https://weddingan.web.app/renata-tata" placeholder="https://domain-kamu.web.app/nama-pengantin" oninput="renderTable()" />
+</div>
+
+<!-- Import Section -->
+<div class="import-section">
+  <div class="import-title">📥 Impor Daftar Nama Tamu</div>
+  <div class="import-buttons">
+    <button class="btn btn-import" onclick="triggerExcelUpload()">📁 Unggah File Excel (.xlsx / .xls)</button>
+    <button class="btn btn-import" onclick="openBulkInputModal()">📝 Copas Banyak Nama (Teks)</button>
+  </div>
+  <p class="import-info">
+    * <strong>Metode Excel</strong>: Program akan mengambil kolom pertama pada sheet pertama di file Excel Anda. Baris yang bertuliskan "nama", "nama tamu", atau "name" akan otomatis diabaikan.<br/>
+    * <strong>Metode Copas Teks</strong>: Cukup tempelkan daftar nama tamu dengan pemisah baris baru (Enter).
+  </p>
+  <input type="file" id="excelFile" accept=".xlsx, .xls, .csv" style="display: none;" onchange="handleExcelUpload(event)" />
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nama Tamu</th>
+        <th>URL Undangan</th>
+        <th>Aksi</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+  <p id="noRows" class="no-rows" style="display:none">Belum ada tamu. Impor lewat tombol di atas atau klik "+ Tambah Tamu".</p>
+</div>
+
+<div class="actions-row">
+  <button class="btn btn-add" onclick="addRow()">+ Tambah Tamu</button>
+  <button class="btn btn-copy" style="padding:8px 16px;font-size:0.78rem" onclick="copyAllUrls()">Salin Semua URL</button>
+</div>
+
+<!-- Modal Template WA -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <h2>📲 Template Pesan WhatsApp</h2>
+    <textarea id="modalText" readonly></textarea>
+    <div class="modal-footer">
+      <button class="btn btn-close" onclick="closeModal()">Tutup</button>
+      <button class="btn btn-copy" onclick="copyModal()">Salin Pesan</button>
+      <a id="waLink" href="#" target="_blank"><button class="btn btn-wa">Buka WA</button></a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Bulk Input -->
+<div class="modal-bg" id="bulkInputModalBg">
+  <div class="modal">
+    <h2>📝 Copas Daftar Nama Tamu</h2>
+    <p style="font-size: 0.72rem; color: #6b7280; margin-bottom: 12px;">
+      Tempel daftar nama tamu di bawah ini (satu nama per baris).
+    </p>
+    <textarea id="bulkInputText" placeholder="Contoh:&#10;Budi & Istri&#10;Keluarga Pak Jaka&#10;Sahabat Siska"></textarea>
+    <div class="modal-footer">
+      <button class="btn btn-close" onclick="closeBulkInputModal()">Batal</button>
+      <button class="btn btn-copy" style="background: #ec4899; color: white;" onclick="submitBulkInput()">Impor Sekarang</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const BASE_TEMPLATE = `Kepada Yth.
+Bapak/Ibu/Saudara/i
+{NAMA}
+___
+
+Assalamualaikum Warahmatullahi Wabarakatuh
+
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami.
+
+Berikut link undangan kami, untuk info lengkap dari acara, bisa kunjungi:
+{URL}
+
+Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
+
+Wassalamualaikum Warahmatullahi Wabarakatuh
+
+Terima Kasih
+
+Hormat kami,
+Renata & Tata`;
+
+  let rows = [{ name: "" }];
+
+  function getBaseUrl() {
+    return document.getElementById("baseUrl").value.trim().replace(/\/$/, "");
+  }
+
+  function buildUrl(name) {
+    if (!name.trim()) return "";
+    return getBaseUrl() + "?to=" + encodeURIComponent(name.trim());
+  }
+
+  function buildMessage(name) {
+    const url = buildUrl(name);
+    return BASE_TEMPLATE.replace("{NAMA}", name).replace("{URL}", url);
+  }
+
+  function addRow() {
+    rows.push({ name: "" });
+    renderTable();
+    setTimeout(() => {
+      const inputs = document.querySelectorAll(".name-input");
+      inputs[inputs.length - 1].focus();
+    }, 50);
+  }
+
+  function deleteRow(i) {
+    rows.splice(i, 1);
+    renderTable();
+  }
+
+  function onNameChange(i, val) {
+    rows[i].name = val;
+    const urlCell = document.getElementById("url-" + i);
+    if (urlCell) urlCell.textContent = buildUrl(val);
+  }
+
+  function renderTable() {
+    const tbody = document.getElementById("tableBody");
+    const noRows = document.getElementById("noRows");
+    noRows.style.display = rows.length === 0 ? "block" : "none";
+    tbody.innerHTML = rows.map((r, i) => `
+      <tr>
+        <td style="color:#6b7280;font-size:0.75rem;width:32px">${i + 1}</td>
+        <td><input class="name-input" value="${escHtml(r.name)}" placeholder="Contoh: Keluarga Pak Budi" oninput="onNameChange(${i}, this.value)" /></td>
+        <td class="url-cell" id="url-${i}">${escHtml(buildUrl(r.name))}</td>
+        <td style="white-space:nowrap">
+          <button class="btn btn-copy" onclick="copyUrl(${i})">Salin URL</button>
+          &nbsp;
+          <button class="btn btn-wa" onclick="openModal(${i})">Template WA</button>
+        </td>
+        <td><button class="btn btn-del" onclick="deleteRow(${i})" title="Hapus">×</button></td>
+      </tr>
+    `).join("");
+  }
+
+  function copyUrl(i) {
+    const url = buildUrl(rows[i].name);
+    if (!url) return showToast("Nama tamu kosong!");
+    navigator.clipboard.writeText(url).then(() => showToast("URL disalin!"));
+  }
+
+  function copyAllUrls() {
+    const text = rows.filter(r => r.name.trim()).map(r => buildUrl(r.name)).join("\n");
+    if (!text) return showToast("Belum ada nama tamu!");
+    navigator.clipboard.writeText(text).then(() => showToast("Semua URL disalin!"));
+  }
+
+  function openModal(i) {
+    const name = rows[i].name.trim();
+    if (!name) return showToast("Nama tamu kosong!");
+    const msg = buildMessage(name);
+    document.getElementById("modalText").value = msg;
+    document.getElementById("waLink").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+    document.getElementById("modalBg").classList.add("open");
+  }
+
+  function closeModal() {
+    document.getElementById("modalBg").classList.remove("open");
+  }
+
+  function copyModal() {
+    const text = document.getElementById("modalText").value;
+    navigator.clipboard.writeText(text).then(() => showToast("Pesan disalin!"));
+  }
+
+  // ── Import functions ──
+
+  function triggerExcelUpload() {
+    document.getElementById("excelFile").click();
+  }
+
+  function handleExcelUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+        
+        // Convert to array of arrays
+        const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+        
+        const importedNames = [];
+        jsonData.forEach((row) => {
+          if (row && row.length > 0) {
+            const cellVal = String(row[0]).trim();
+            // Filter header rows
+            const lowVal = cellVal.toLowerCase();
+            if (cellVal && lowVal !== "nama" && lowVal !== "nama tamu" && lowVal !== "name" && lowVal !== "daftar nama") {
+              importedNames.push(cellVal);
+            }
+          }
+        });
+
+        if (importedNames.length === 0) {
+          showToast("Tidak ada nama tamu ditemukan di kolom pertama.");
+          return;
+        }
+
+        // Add to rows
+        const hasRealData = rows.some(r => r.name.trim());
+        if (!hasRealData) {
+          rows = importedNames.map(name => ({ name }));
+        } else {
+          rows = [...rows, ...importedNames.map(name => ({ name }))];
+        }
+
+        renderTable();
+        showToast(`Berhasil mengimpor ${importedNames.length} nama dari Excel!`);
+      } catch (err) {
+        console.error(err);
+        showToast("Gagal membaca Excel. Cek ekstensi file.");
+      }
+      event.target.value = ""; // reset
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  function openBulkInputModal() {
+    document.getElementById("bulkInputText").value = "";
+    document.getElementById("bulkInputModalBg").classList.add("open");
+  }
+
+  function closeBulkInputModal() {
+    document.getElementById("bulkInputModalBg").classList.remove("open");
+  }
+
+  function submitBulkInput() {
+    const text = document.getElementById("bulkInputText").value.trim();
+    if (!text) {
+      showToast("Teks kosong!");
+      return;
+    }
+
+    const lines = text.split("\n").map(l => l.trim()).filter(l => l.length > 0);
+    if (lines.length === 0) {
+      showToast("Nama tidak valid.");
+      return;
+    }
+
+    const hasRealData = rows.some(r => r.name.trim());
+    if (!hasRealData) {
+      rows = lines.map(name => ({ name }));
+    } else {
+      rows = [...rows, ...lines.map(name => ({ name }))];
+    }
+
+    renderTable();
+    closeBulkInputModal();
+    showToast(`Berhasil mengimpor ${lines.length} nama tamu!`);
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 2000);
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  // Close modals on bg click
+  document.getElementById("modalBg").addEventListener("click", function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.getElementById("bulkInputModalBg").addEventListener("click", function(e) {
+    if (e.target === this) closeBulkInputModal();
+  });
+
+  // Init with a few empty rows
+  rows = [{ name: "" }, { name: "" }, { name: "" }];
+  renderTable();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "tata-firebase"
+  },
+  "targets": {
+    "tata-firebase": {
+      "hosting": {
+        "tata-firebase": [
+          "tata-firebase"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "How to Make Millions Before Grandma Dies Movie Hub",
+  "description": "Interactive fan and details hub for the Thai film 'How To Make Millions Before Grandma Dies'. Features trailer playback, personal rating dynamic custom controls, sound synth theme player, interactive photo gallery, and high-fidelity movie exploration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

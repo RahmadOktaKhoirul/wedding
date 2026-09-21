@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-cinzel: "Cinzel", Georgia, serif;
+  --font-script: "Pinyon Script", "Alex Brush", cursive;
+  --font-brush: "Alex Brush", "Great Vibes", cursive;
+  --font-sans: "Montserrat", "Plus Jakarta Sans", sans-serif;
+  
+  --color-maroon: #853638;
+  --color-maroon-dark: #5A2022;
+  --color-maroon-deep: #2B1113;
+  --color-cream: #FAF7F2;
+  --color-cream-soft: #F4EFE6;
+  --color-cream-dark: #EDE4D7;
+  --color-gold: #C5A880;
+  --color-gold-dark: #9E7D4E;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  background-color: #2B1113;
+  color: #4A2022;
+  font-family: var(--font-sans);
+  touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.font-cormorant {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.font-cinzel {
+  font-family: "Cinzel", Georgia, serif;
+}
+
+.font-script {
+  font-family: "Pinyon Script", "Alex Brush", cursive;
+}
+
+.font-brush {
+  font-family: "Alex Brush", "Great Vibes", cursive;
+}
+
+.font-montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Monogram / Big Initial Gradient */
+.gradient-initial {
+  background: linear-gradient(135deg, #A8484B 0%, #632426 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Disc Spin Animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+/* Flipped Left Floating Floral Animation */
+@keyframes float-left-sway {
+  0%, 100% {
+    transform: scaleX(-1) translateY(0px) rotate(-12deg);
+  }
+  50% {
+    transform: scaleX(-1) translateY(-14px) rotate(-6deg);
+  }
+}
+
+/* Right Floating Floral Animation */
+@keyframes float-right-sway {
+  0%, 100% {
+    transform: translateY(0px) rotate(12deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(6deg);
+  }
+}
+
+.animate-float-left {
+  animation: float-left-sway 6s ease-in-out infinite;
+}
+
+.animate-float-right {
+  animation: float-right-sway 6s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+/* Floating Floral Animation generic */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+.animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #2B1113;
+}
+::-webkit-scrollbar-thumb {
+  background: #853638;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A8484B;
+}
+
+/* Glass Card / Frosted Paper Texture */
+.frosted-card {
+  background-color: rgba(250, 247, 242, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 168, 128, 0.45);
+  box-shadow: 0 15px 35px -5px rgba(43, 17, 19, 0.12);
+}
+
+.frosted-card-soft {
+  background-color: rgba(250, 247, 242, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(197, 168, 128, 0.35);
+  box-shadow: 0 10px 25px -5px rgba(43, 17, 19, 0.08);
+}
