@@ -47,6 +47,9 @@ export const DesktopSideBanner: React.FC<DesktopSideBannerProps> = ({
           </span>
         </div>
 
+        {/* Decorative Divider */}
+        <div className="w-16 h-[1px] divider-ornament mb-4" />
+
         <p className="font-cinzel text-xs tracking-[0.35em] uppercase text-[#E5D9C8] mb-2 font-semibold">
           The Wedding Of
         </p>

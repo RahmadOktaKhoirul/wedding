@@ -56,17 +56,17 @@ export const CoverModal: React.FC<CoverModalProps> = ({
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         className="relative z-10 max-w-sm sm:max-w-md w-full mx-4 p-8 sm:p-10 text-center rounded-3xl frosted-card shadow-2xl"
       >
-        {/* Monogram / Inisial */}
+        {/* Monogram / Inisial with Gradient */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="relative h-28 flex items-center justify-center select-none mb-3"
         >
-          <span className="font-script text-8xl sm:text-9xl text-[#853638] opacity-95 leading-none -mr-4 drop-shadow-sm">
+          <span className="font-script text-8xl sm:text-9xl gradient-monogram leading-none -mr-4 drop-shadow-sm">
             {config.monogram.brideInitial}
           </span>
-          <span className="font-script text-8xl sm:text-9xl text-[#C5A880] opacity-90 leading-none -ml-4 -mt-4 drop-shadow-sm">
+          <span className="font-script text-8xl sm:text-9xl text-[#C5A880] leading-none -ml-4 -mt-4 drop-shadow-sm">
             {config.monogram.groomInitial}
           </span>
         </motion.div>

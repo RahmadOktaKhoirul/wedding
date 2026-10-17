@@ -1,20 +1,35 @@
 @import "tailwindcss";
 
 @theme {
+  /* Font Families */
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-cinzel: "Cinzel", Georgia, serif;
   --font-script: "Pinyon Script", "Alex Brush", cursive;
   --font-brush: "Alex Brush", "Great Vibes", cursive;
   --font-sans: "Montserrat", "Plus Jakarta Sans", sans-serif;
   
+  /* Primary Colors - Vintage Burgundy */
   --color-maroon: #853638;
-  --color-maroon-dark: #5A2022;
+  --color-maroon-dark: #6d0e0f;
+  --color-maroon-light: #995555;
   --color-maroon-deep: #2B1113;
+  
+  /* Accent Colors */
+  --color-rose: #fdbcbc;
+  --color-rose-dark: #e8a5a5;
+  
+  /* Neutral Colors */
   --color-cream: #FAF7F2;
   --color-cream-soft: #F4EFE6;
   --color-cream-dark: #EDE4D7;
+  
+  /* Gold Accent */
   --color-gold: #C5A880;
   --color-gold-dark: #9E7D4E;
+  
+  /* Text Colors */
+  --color-text-dark: #473025;
+  --color-text-muted: #87414c;
 }
 
 html, body {
@@ -53,6 +68,27 @@ html, body {
   background: linear-gradient(135deg, #A8484B 0%, #632426 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Gradient Monogram - Vintage Theme */
+.gradient-monogram {
+  background: linear-gradient(45deg, #995555, #6d0e0f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section Divider Ornament */
+.divider-ornament {
+  background: linear-gradient(to right, transparent, #853638, transparent);
+}
+
+/* Glass Card Effect */
+.glass-card {
+  background: rgba(255, 248, 240, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 248, 240, 0.1);
 }
 
 /* Disc Spin Animation */

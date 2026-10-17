@@ -90,14 +90,14 @@ export const HeroOpening: React.FC<HeroOpeningProps> = ({ config, isOpened }) =>
               transition={{ duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
               className="flex flex-col items-center justify-center text-center select-none"
             >
-              {/* Monogram Inisial */}
+              {/* Monogram Inisial with Gradient */}
               <motion.div
                 initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="relative h-20 sm:h-24 flex items-center justify-center mb-1"
               >
-                <span className="font-script text-7xl sm:text-8xl text-[#853638] leading-none -mr-3 drop-shadow-sm">
+                <span className="font-script text-7xl sm:text-8xl gradient-monogram leading-none -mr-3 drop-shadow-sm">
                   {config.monogram.brideInitial}
                 </span>
                 <span className="font-script text-7xl sm:text-8xl text-[#C5A880] leading-none -ml-3 -mt-3 drop-shadow-sm">
