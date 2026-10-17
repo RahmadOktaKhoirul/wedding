@@ -1,23 +1,69 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 💍 Undangan Digital — Rahmad & Renata
 
-# Run and deploy your AI Studio app
+Undangan digital pernikahan dengan tema **Premium Vintage**.
 
-This contains everything you need to run your app locally.
+## Tech Stack
 
-View your app in AI Studio: https://ai.studio/apps/723e4916-8784-4f2b-b46c-bae1a180448e
+- **React 19** + **TypeScript**
+- **Vite** — Build tool
+- **Tailwind CSS 4** — Styling
+- **Motion (Framer)** — Animasi
+- **Firebase Firestore** — RSVP & Buku Tamu
+- **Lucide React** — Icons
 
-## Run Locally
+## Fitur
 
-**Prerequisites:**  Node.js
+- ✨ Cover modal dengan personalisasi nama tamu (`?to=Nama`)
+- 🎬 Video opening animasi
+- 💒 Detail acara (Akad, Resepsi, Ngunduh Mantu)
+- 💕 Love story timeline
+- 📸 Galeri foto dengan lightbox
+- 🎁 Amplop digital dengan copy-to-clipboard
+- 📝 RSVP & Buku Tamu (Firebase)
+- 🎵 Background music player
+- 📱 Responsive (mobile & desktop)
 
+## Getting Started
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+# Install dependencies
+npm install
 
-url untuk mengundang tamu
-http://localhost:3000/undangan-tool.html
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Deploy to Firebase
+npm run deploy
+```
+
+## Environment Variables
+
+Copy `.env.example` to `.env` and fill in your Firebase config:
+
+```env
+VITE_FIREBASE_API_KEY=your-api-key
+VITE_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your-project-id
+VITE_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+VITE_FIREBASE_APP_ID=your-app-id
+```
+
+## Preview URL
+
+```
+http://localhost:3000/?to=Rahmad+Okta
+```
+
+## Design System
+
+Lihat `DESIGN.md` untuk spesifikasi visual lengkap.
+
+---
+
+**Theme:** Premium Vintage  
+**Wedding Date:** 02 Oktober 2026  
+**Location:** Driyorejo, Gresik, Jawa Timur

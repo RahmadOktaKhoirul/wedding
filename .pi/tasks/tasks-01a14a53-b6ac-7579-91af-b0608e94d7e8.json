@@ -1,29 +1,17 @@
 {
-  "nextId": 6,
+  "nextId": 7,
   "tasks": [
     {
-      "id": "4",
-      "subject": "Terapkan tema Vintage ke semua komponen",
-      "description": "Update styling semua komponen sesuai DESIGN.md: CoverModal, HeroOpening, QuoteSection, CoupleSection, CountdownSection, EventsSection, LoveStorySection, GallerySection, WeddingGiftSection, RSVPSection, ClosingSection, MusicPlayer, DesktopSideBanner",
+      "id": "6",
+      "subject": "Bersihkan file tidak terpakai di project",
+      "description": "Identifikasi dan hapus file duplikat, file sisa, dan file yang tidak diperlukan di project undangan digital",
       "status": "in_progress",
-      "activeForm": "Menerapkan tema Vintage",
+      "activeForm": "Membersihkan file tidak terpakai",
       "metadata": {},
       "blocks": [],
       "blockedBy": [],
-      "createdAt": 1792251084712,
-      "updatedAt": 1792251087313
-    },
-    {
-      "id": "5",
-      "subject": "Jalankan dev server untuk preview",
-      "description": "Start Vite dev server di port 3000 untuk preview hasil perubahan tema",
-      "status": "pending",
-      "activeForm": "Menjalankan dev server",
-      "metadata": {},
-      "blocks": [],
-      "blockedBy": [],
-      "createdAt": 1792251084723,
-      "updatedAt": 1792251084723
+      "createdAt": 1792251285330,
+      "updatedAt": 1792251288909
     }
   ]
 }
