@@ -5,13 +5,13 @@
       "id": "6",
       "subject": "Bersihkan file tidak terpakai di project",
       "description": "Identifikasi dan hapus file duplikat, file sisa, dan file yang tidak diperlukan di project undangan digital",
-      "status": "in_progress",
+      "status": "completed",
       "activeForm": "Membersihkan file tidak terpakai",
       "metadata": {},
       "blocks": [],
       "blockedBy": [],
       "createdAt": 1792251285330,
-      "updatedAt": 1792251288909
+      "updatedAt": 1792251417465
     }
   ]
 }
