@@ -1,0 +1,41 @@
+{
+  "nextId": 4,
+  "tasks": [
+    {
+      "id": "1",
+      "subject": "Hapus file tidak terpakai (dead code)",
+      "description": "Hapus file-file yang tidak diimport di App.tsx: Header.tsx, EventDetails.tsx, LoveStory.tsx, SplashScreen.tsx, TrailerModal.tsx, PosterCard.tsx, PhotosGallery.tsx, RatingControl.tsx, CountdownTimer.tsx, FloatingMusicPlayer.tsx, data.ts",
+      "status": "completed",
+      "activeForm": "Menghapus file tidak terpakai",
+      "metadata": {},
+      "blocks": [],
+      "blockedBy": [],
+      "createdAt": 1792250901167,
+      "updatedAt": 1792251004544
+    },
+    {
+      "id": "2",
+      "subject": "Perbaiki TypeScript errors",
+      "description": "Perbaiki 5 type errors yang ditemukan: import WeddingData (harus WeddingConfig) dan import Movie (tidak ada di types.ts)",
+      "status": "completed",
+      "activeForm": "Memperbaiki TypeScript errors",
+      "metadata": {},
+      "blocks": [],
+      "blockedBy": [],
+      "createdAt": 1792250901187,
+      "updatedAt": 1792251004560
+    },
+    {
+      "id": "3",
+      "subject": "Stage perubahan git",
+      "description": "Stage deleted netflix.mp3 dan commit semua perubahan cleanup",
+      "status": "in_progress",
+      "activeForm": "Menyimpan perubahan git",
+      "metadata": {},
+      "blocks": [],
+      "blockedBy": [],
+      "createdAt": 1792250901552,
+      "updatedAt": 1792251007263
+    }
+  ]
+}
