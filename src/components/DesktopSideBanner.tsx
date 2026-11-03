@@ -10,19 +10,14 @@ export const DesktopSideBanner: React.FC<DesktopSideBannerProps> = ({
 }) => {
   return (
     <aside
-      className="hidden lg:flex flex-col justify-between w-[400px] xl:w-[480px] 2xl:w-[560px] h-screen sticky top-0 p-10 xl:p-12 text-[#FAF7F2] border-r border-[#C5A880]/30 overflow-hidden select-none bg-[#14271F]"
+      className="relative hidden lg:flex flex-col justify-between w-[58vw] h-screen sticky top-0 p-10 xl:p-16 text-[#FAF7F2] border-r border-[#C5A880]/30 overflow-hidden select-none bg-[#14271F]"
     >
-      {/* Keep the floral details behind the text and portrait. */}
       <img
-        src="/assets/flower.webp"
-        alt="Ornament Top Left Flipped"
-        className="absolute z-0 -top-16 -left-16 w-72 opacity-35 pointer-events-none animate-float-left drop-shadow-xl"
+        src={config.gallery.photos[0] || config.closing.photo || "/assets/intro.webp"}
+        alt={`${config.bride.nickname} dan ${config.groom.nickname}`}
+        className="absolute inset-0 z-0 h-full w-full object-cover object-center"
       />
-      <img
-        src="/assets/flower.webp"
-        alt="Ornament Bottom Right"
-        className="absolute z-0 -bottom-16 -right-16 w-72 opacity-35 pointer-events-none animate-float-right drop-shadow-xl"
-      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#14271F]/45 via-[#14271F]/35 to-[#14271F]/85" />
 
       {/* Top Header */}
       <div className="relative z-10">
@@ -34,31 +29,23 @@ export const DesktopSideBanner: React.FC<DesktopSideBannerProps> = ({
 
       {/* Center Monogram & Couple Name */}
       <div className="relative z-10 flex flex-col items-center my-auto text-center">
-        <div className="relative w-full max-w-[330px] h-[min(36vh,340px)] min-h-[220px] mb-6 overflow-hidden rounded-t-full rounded-b-2xl border border-[#C5A880]/70 bg-[#0B1B15] shadow-2xl">
-          <img
-            src={config.gallery.photos[0] || config.closing.photo || "/assets/intro.webp"}
-            alt={`${config.bride.nickname} dan ${config.groom.nickname}`}
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#14271F]/55 via-transparent to-transparent" />
-          <div className="absolute bottom-4 left-0 right-0 flex justify-center">
-            <span className="font-script text-6xl text-white/95 leading-none -mr-3 drop-shadow-md">
+        <div className="flex items-center justify-center mb-5 drop-shadow-lg">
+            <span className="font-script text-7xl xl:text-8xl text-white/95 leading-none -mr-3">
               {config.monogram.brideInitial}
             </span>
-            <span className="font-script text-6xl text-[#C5A880] leading-none -ml-3 -mt-3 drop-shadow-md">
+            <span className="font-script text-7xl xl:text-8xl text-[#E4C994] leading-none -ml-3 -mt-3">
               {config.monogram.groomInitial}
             </span>
-          </div>
         </div>
 
         {/* Decorative Divider */}
-        <div className="w-16 h-[1px] divider-ornament mb-4 mx-auto" />
+        <div className="w-16 h-[1px] bg-[#E4C994]/80 mb-4 mx-auto" />
 
         <p className="font-cinzel text-xs tracking-[0.35em] uppercase text-[#E5D9C8] mb-2 font-semibold">
           The Wedding Of
         </p>
 
-        <h1 className="font-cormorant italic text-4xl xl:text-5xl text-white font-bold tracking-wide mb-4 leading-tight drop-shadow-lg">
+        <h1 className="font-cormorant italic text-4xl xl:text-6xl text-white font-bold tracking-wide mb-4 leading-tight drop-shadow-lg">
           {config.bride.nickname} &amp; {config.groom.nickname}
         </h1>
 
@@ -70,12 +57,12 @@ export const DesktopSideBanner: React.FC<DesktopSideBannerProps> = ({
       </div>
 
       {/* Footer Quote */}
-      <div className="relative z-10 pt-8 border-t border-white/15">
-        <p className="font-cormorant italic text-base text-[#E5D9C8]/85 leading-relaxed max-w-sm">
+      <div className="relative z-10 pt-8 border-t border-white/30">
+        <p className="font-cormorant italic text-lg text-white/90 leading-relaxed max-w-lg drop-shadow-md">
           “Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu
           pasangan-pasangan dari jenismu sendiri...”
         </p>
-        <p className="font-cinzel text-xs text-[#C5A880] font-bold mt-2 tracking-wider">
+        <p className="font-cinzel text-xs text-[#E4C994] font-bold mt-2 tracking-wider">
           QS. Ar-Rum : 21
         </p>
       </div>

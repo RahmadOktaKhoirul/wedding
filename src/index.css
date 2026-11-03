@@ -177,62 +177,105 @@ html, body {
 
 .invitation-panel {
   isolation: isolate;
-  background-color: transparent;
-  background-image:
-    var(--panel-background, url("/assets/background.webp"));
+  background-color: #faf7f2;
+  background-image: var(--panel-background, none);
   background-position: var(--panel-position, center);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.invitation-panel > img[src="/assets/flower.webp"] {
-  opacity: 0.45;
+.invitation-panel--hero,
+.invitation-panel--closing {
+  background-color: #14271f;
+  background-size: cover;
+  background-position: center;
 }
 
 .invitation-panel--hero {
-  --panel-background: url("/assets/intro.webp");
-  --panel-position: center 42%;
+  --panel-background: linear-gradient(180deg, rgba(20, 39, 31, 0.12) 35%, rgba(20, 39, 31, 0.72)), url("/foto/IMG_0802.webp");
+  --panel-position: center 38%;
 }
 
 .invitation-panel--quote {
-  --panel-background: url("/assets/background-mobile.webp");
-  --panel-position: center 24%;
+  background-color: #f7f0e5;
+  background-image: radial-gradient(ellipse at 50% 35%, #fffdf8 0%, #f7f0e5 72%, #eee4d4 100%);
 }
 
 .invitation-panel--couple {
-  --panel-position: center 30%;
+  background-color: #f2e7d6;
+  background-image: linear-gradient(145deg, #f8f1e6, #eadcc8);
+}
+
+.invitation-panel--couple > img[src="/assets/flower.webp"] {
+  opacity: 0.12;
 }
 
 .invitation-panel--countdown {
-  --panel-background: url("/assets/background-mobile.webp");
-  --panel-position: center 56%;
+  background-color: #f0e5d6;
+  background-image:
+    radial-gradient(ellipse at top, rgba(255, 255, 255, 0.76), transparent 68%),
+    repeating-linear-gradient(0deg, rgba(133, 54, 56, 0.025) 0 1px, transparent 1px 5px);
 }
 
 .invitation-panel--events {
-  --panel-position: center 70%;
+  background-color: #f8f2e8;
+  background-image: linear-gradient(135deg, #fffdf8 0%, #f2e9db 100%);
 }
 
 .invitation-panel--story {
-  --panel-background: url("/assets/background-mobile.webp");
-  --panel-position: center 43%;
+  background-color: #ede5d8;
+  background-image:
+    linear-gradient(90deg, rgba(20, 39, 31, 0.36), rgba(20, 39, 31, 0.12)),
+    url("/foto/IMG_20251113_210855.webp");
+  background-position: center, center 35%;
+}
+
+.invitation-panel--story > div {
+  color: #fffaf1;
+}
+
+.invitation-panel--story > div > p,
+.invitation-panel--story > div > div > p {
+  color: #fffaf1;
+  text-shadow: 0 1px 8px rgba(20, 39, 31, 0.55);
 }
 
 .invitation-panel--gallery {
-  --panel-position: center 80%;
+  background-color: #2b1113;
+  background-image: linear-gradient(155deg, #3b181a, #1d1011);
+}
+
+.invitation-panel--gallery h2 {
+  color: #f7e8d1;
+}
+
+.invitation-panel--gallery .frosted-card {
+  background-color: rgba(250, 247, 242, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .invitation-panel--gift {
-  --panel-background: url("/assets/background-mobile.webp");
-  --panel-position: center 66%;
+  background-color: #f7f0e5;
+  background-image: linear-gradient(160deg, #fffdf8, #efe2d1);
 }
 
 .invitation-panel--rsvp {
-  --panel-position: center 51%;
+  background-color: #e8eee7;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.85), transparent 58%),
+    linear-gradient(145deg, #e5ece4, #f8f2e8);
 }
 
 .invitation-panel--closing {
-  --panel-background: url("/assets/intro.webp");
-  --panel-position: center 84%;
+  background-color: #f2e7d6;
+  background-image: linear-gradient(145deg, #f8f1e6, #eadcc8);
+}
+
+@media (min-width: 64rem) {
+  .invitation-panel--couple {
+    background-attachment: fixed;
+  }
 }
 
 .cover-page {

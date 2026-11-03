@@ -82,12 +82,12 @@ export default function App() {
       </AnimatePresence>
 
       {/* Main Container Wrapper */}
-      <div className="relative z-10 w-full flex justify-center lg:h-screen lg:overflow-hidden">
+      <div className="relative z-10 w-full flex justify-center lg:justify-start lg:h-screen lg:overflow-hidden">
         {/* Left Side Banner for Desktop View */}
         <DesktopSideBanner config={WEDDING_DATA} />
 
         {/* Main Interactive Invitation Column (Transparent so background.png shines through) */}
-        <main ref={mainRef} className="relative z-10 w-full max-w-xl min-h-screen shadow-2xl flex flex-col bg-transparent lg:h-screen lg:min-h-0 lg:overflow-y-auto">
+        <main ref={mainRef} className="relative z-10 w-full max-w-xl min-h-screen shadow-2xl flex flex-col bg-transparent lg:w-[42vw] lg:max-w-none lg:flex-none lg:h-screen lg:min-h-0 lg:overflow-y-auto">
           {/* Section 1: Hero Opening Video & Monogram */}
           <HeroOpening config={WEDDING_DATA} isOpened={isOpened} />
 
