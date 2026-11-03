@@ -11,17 +11,17 @@ export const LoveStorySection: React.FC<LoveStorySectionProps> = ({
   loveStory,
 }) => {
   return (
-    <section className="relative w-full py-16 px-4 sm:px-8 bg-transparent text-center overflow-hidden">
+    <section className="invitation-panel invitation-panel--story relative w-full py-16 px-4 sm:px-8 text-center overflow-hidden">
       {/* Background Ornament Accents: Layer Paling Depan (z-20), Left Flipped, Right Natural */}
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Left Flipped"
-        className="absolute z-20 top-8 -left-10 sm:-left-12 w-44 sm:w-56 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
+        className="absolute z-0 top-8 -left-10 sm:-left-12 w-44 sm:w-56 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
       />
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Right"
-        className="absolute z-20 bottom-8 -right-10 sm:-right-12 w-44 sm:w-56 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
+        className="absolute z-0 bottom-8 -right-10 sm:-right-12 w-44 sm:w-56 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
       />
 
       <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center">

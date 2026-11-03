@@ -8,17 +8,17 @@ interface QuoteSectionProps {
 
 export const QuoteSection: React.FC<QuoteSectionProps> = ({ config }) => {
   return (
-    <section className="relative w-full py-16 px-4 sm:px-8 bg-transparent text-center overflow-hidden">
+    <section className="invitation-panel invitation-panel--quote relative w-full py-16 px-4 sm:px-8 text-center overflow-hidden">
       {/* Side Decorative Flowers: Layer Paling Depan (z-20), Left Flipped, Right Natural, Animated */}
       <img
         src="/assets/flower.webp"
         alt="Flower Decor Left Flipped"
-        className="absolute z-20 -left-10 sm:-left-12 top-1/2 -translate-y-1/2 w-40 sm:w-56 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
+        className="absolute z-0 -left-10 sm:-left-12 top-1/2 -translate-y-1/2 w-40 sm:w-56 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
       />
       <img
         src="/assets/flower.webp"
         alt="Flower Decor Right"
-        className="absolute z-20 -right-10 sm:-right-12 top-1/2 -translate-y-1/2 w-40 sm:w-56 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
+        className="absolute z-0 -right-10 sm:-right-12 top-1/2 -translate-y-1/2 w-40 sm:w-56 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
       />
 
       {/* Frosted Container Card */}

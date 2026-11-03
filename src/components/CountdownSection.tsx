@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Calendar } from "lucide-react";
+import { Calendar, CalendarPlus } from "lucide-react";
+import { EventDetail } from "../types";
 
 interface CountdownSectionProps {
   targetDate: string;
+  event: EventDetail;
+  coupleNames: string;
 }
 
 interface TimeLeft {
@@ -15,6 +18,8 @@ interface TimeLeft {
 
 export const CountdownSection: React.FC<CountdownSectionProps> = ({
   targetDate,
+  event,
+  coupleNames,
 }) => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
@@ -51,19 +56,36 @@ export const CountdownSection: React.FC<CountdownSectionProps> = ({
     { label: "Menit", value: timeLeft.minutes },
     { label: "Detik", value: timeLeft.seconds },
   ];
+  const date = targetDate.slice(0, 10).replaceAll("-", "");
+  const nextDay = new Date(`${targetDate.slice(0, 10)}T00:00:00`);
+  nextDay.setDate(nextDay.getDate() + 1);
+  const endDate = [
+    nextDay.getFullYear(),
+    String(nextDay.getMonth() + 1).padStart(2, "0"),
+    String(nextDay.getDate()).padStart(2, "0"),
+  ].join("");
+  const calendarUrl = new URL("https://calendar.google.com/calendar/render");
+  calendarUrl.search = new URLSearchParams({
+    action: "TEMPLATE",
+    text: `Pernikahan ${coupleNames}`,
+    dates: `${date}/${endDate}`,
+    details: `${event.title} - ${event.fullDate}, ${event.time}`,
+    location: `${event.locationName}, ${event.address}`,
+    ctz: "Asia/Jakarta",
+  }).toString();
 
   return (
-    <section className="relative w-full py-16 px-4 sm:px-8 bg-transparent text-center overflow-hidden">
+    <section className="invitation-panel invitation-panel--countdown relative w-full py-16 px-4 sm:px-8 text-center overflow-hidden">
       {/* Front Layer Flower Ornaments (z-20) */}
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Left Flipped"
-        className="absolute z-20 top-1/2 -translate-y-1/2 -left-10 sm:-left-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
+        className="absolute z-0 top-1/2 -translate-y-1/2 -left-10 sm:-left-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
       />
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Right"
-        className="absolute z-20 top-1/2 -translate-y-1/2 -right-10 sm:-right-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
+        className="absolute z-0 top-1/2 -translate-y-1/2 -right-10 sm:-right-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
       />
 
       <motion.div
@@ -107,6 +129,15 @@ export const CountdownSection: React.FC<CountdownSectionProps> = ({
             </motion.div>
           ))}
         </div>
+        <a
+          href={calendarUrl.toString()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-[#853638]/40 px-5 py-2.5 font-cinzel text-xs font-semibold tracking-wider text-[#853638] transition-colors hover:bg-[#853638] hover:text-white"
+        >
+          <CalendarPlus className="h-4 w-4" />
+          Simpan ke Kalender
+        </a>
       </motion.div>
     </section>
   );

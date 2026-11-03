@@ -9,17 +9,17 @@ interface CoupleSectionProps {
 
 export const CoupleSection: React.FC<CoupleSectionProps> = ({ config }) => {
   return (
-    <section className="relative w-full py-16 px-4 sm:px-8 bg-transparent text-center overflow-hidden">
+    <section className="invitation-panel invitation-panel--couple relative w-full py-16 px-4 sm:px-8 text-center overflow-hidden">
       {/* Background Ornament Accents: Layer Paling Depan (z-20), Left Flipped, Right Natural */}
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Left Flipped"
-        className="absolute z-20 top-2 -left-12 sm:-left-16 w-48 sm:w-64 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
+        className="absolute z-0 top-2 -left-12 sm:-left-16 w-48 sm:w-64 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
       />
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Right"
-        className="absolute z-20 bottom-2 -right-12 sm:-right-16 w-48 sm:w-64 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
+        className="absolute z-0 bottom-2 -right-12 sm:-right-16 w-48 sm:w-64 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
       />
 
       <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center">

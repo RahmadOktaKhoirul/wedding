@@ -28,7 +28,7 @@
 ### Background & Surface
 | Role | Color | Hex | Usage |
 |------|-------|-----|-------|
-| **Background** | Dark Warm | `#2B1113` | Page background |
+| **Background** | Deep Forest Green | `#14271F` | Desktop framing and page background |
 | **Background Light** | Warm Cream | `#FFF8F0` | Light sections, cards |
 | **Surface** | Translucent White | `rgba(255, 248, 240, 0.05)` | Glass cards, overlays |
 | **Card** | Semi-transparent | `rgba(255, 248, 240, 0.08)` | Card backgrounds |
@@ -60,7 +60,7 @@
 ### Dark Mode (Default for this project)
 ```css
 :root {
-  --bg-primary: #2B1113;
+  --bg-primary: #14271F;
   --bg-surface: rgba(255, 248, 240, 0.05);
   --bg-card: rgba(255, 248, 240, 0.08);
   --text-primary: #FFF8F0;
@@ -79,7 +79,7 @@
 ### Font Stack
 ```css
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Pinyon+Script&display=swap');
 
 /* Font Families */
 --font-display: 'Cinzel', serif;        /* Headings, formal text */
@@ -341,17 +341,27 @@
 ## Component Patterns
 
 ### Cover Modal
-- Full-screen overlay with dark background
-- Centered content with vertical stack
+- Full-bleed cream floral artwork with a slender burgundy arch frame
+- Centered invitation text sits directly on the artwork without a frosted card
 - Monogram initials with gradient effect
 - Elegant button with border animation
 - Guest name personalization
+- Desktop uses a sticky couple portrait and invitation details beside the scrolling invitation.
+- Burgundy remains the primary action color, balanced with deep forest green and ivory surfaces.
 
 ### Hero Section
 - Video background (autoplay, muted, playsinline)
 - Overlay gradient (dark at bottom)
 - Monogram and names centered
 - Scroll indicator at bottom
+
+### Countdown and RSVP
+- Countdown includes a calendar action for the wedding date.
+- RSVP records the guest name, attendance, domicile, and message.
+- Guest count is collected for attending guests only.
+- Show submission failures clearly and retain the form values for retry.
+- Give each invitation section a distinct crop and warm tint of the existing floral paper artwork.
+- Use a single fine antique-gold frame with a subtle burgundy inset; keep couple photos inside photo cards.
 
 ### Section Headers
 ```tsx
@@ -439,9 +449,8 @@
 ## Accessibility
 
 ### Color Contrast
-- Body text on dark bg: `#FFF8F0` on `#2B1113` = **12.5:1** ✓
-- Accent text: `#fdbcbc` on `#2B1113` = **9.2:1** ✓
-- Muted text: `rgba(255,248,240,0.6)` on `#2B1113` = **7.5:1** ✓
+- Body text on dark bg: `#FFF8F0` on `#14271F` = **14.9:1** ✓
+- Accent text: `#fdbcbc` on `#14271F` = **9.8:1** ✓
 
 ### Focus Indicators
 ```css

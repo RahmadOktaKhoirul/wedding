@@ -41,7 +41,9 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ guestName }) => {
   const [comments, setComments] = useState<RSVPComment[]>(INITIAL_COMMENTS);
   const [name, setName] = useState(guestName || "");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"Hadir" | "Tidak hadir" | "Masih ragu">("Hadir");
+  const [status, setStatus] = useState<RSVPComment["status"]>("Hadir");
+  const [guestCount, setGuestCount] = useState(1);
+  const [domicile, setDomicile] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
 
@@ -78,8 +80,13 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ guestName }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !message.trim()) {
-      setFeedback("Mohon isi nama dan ucapan Anda.");
+    if (!name.trim() || !message.trim() || !domicile.trim()) {
+      setFeedback("Mohon isi nama, domisili, dan ucapan Anda.");
+      return;
+    }
+
+    if (status === "Hadir" && (!Number.isInteger(guestCount) || guestCount < 1)) {
+      setFeedback("Jumlah tamu yang hadir minimal 1 orang.");
       return;
     }
 
@@ -90,6 +97,8 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ guestName }) => {
       name: name.trim(),
       message: message.trim(),
       status,
+      domicile: domicile.trim(),
+      ...(status === "Hadir" ? { guestCount } : {}),
       createdAt: new Date(),
     };
 
@@ -101,10 +110,8 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ guestName }) => {
       setMessage("");
       setFeedback("Terima kasih atas doa dan ucapan Anda!");
     } catch (err) {
-      // Fallback local memory
-      setComments((prev) => [newComment, ...prev]);
-      setMessage("");
-      setFeedback("Terima kasih atas doa dan ucapan Anda!");
+      console.error("Failed to submit RSVP:", err);
+      setFeedback("Ucapan gagal dikirim. Periksa koneksi atau coba lagi nanti.");
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setFeedback(null), 4000);
@@ -115,17 +122,17 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ guestName }) => {
   const countTidakHadir = comments.filter((c) => c.status === "Tidak hadir").length;
 
   return (
-    <section className="relative w-full py-16 px-4 sm:px-8 bg-transparent text-center overflow-hidden">
+    <section className="invitation-panel invitation-panel--rsvp relative w-full py-16 px-4 sm:px-8 text-center overflow-hidden">
       {/* Front Layer Flower Ornaments (z-20) */}
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Left Flipped"
-        className="absolute z-20 top-12 -left-10 sm:-left-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
+        className="absolute z-0 top-12 -left-10 sm:-left-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
       />
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Right"
-        className="absolute z-20 top-12 -right-10 sm:-right-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
+        className="absolute z-0 top-12 -right-10 sm:-right-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
       />
 
       <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center">
@@ -183,10 +190,11 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ guestName }) => {
         >
           {/* Name Input */}
           <div>
-            <label className="block text-xs font-cinzel font-bold text-[#853638] uppercase mb-1.5">
+            <label htmlFor="rsvp-name" className="block text-xs font-cinzel font-bold text-[#853638] uppercase mb-1.5">
               Nama Anda
             </label>
             <input
+              id="rsvp-name"
               type="text"
               required
               value={name}
@@ -196,12 +204,28 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ guestName }) => {
             />
           </div>
 
+          <div>
+            <label htmlFor="rsvp-domicile" className="block text-xs font-cinzel font-bold text-[#853638] uppercase mb-1.5">
+              Domisili
+            </label>
+            <input
+              id="rsvp-domicile"
+              type="text"
+              required
+              value={domicile}
+              onChange={(e) => setDomicile(e.target.value)}
+              placeholder="Contoh: Surabaya"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#F4EFE6]/90 border border-[#C5A880]/40 text-[#4A2022] font-sans text-xs sm:text-sm focus:outline-none focus:border-[#853638]"
+            />
+          </div>
+
           {/* Message Textarea */}
           <div>
-            <label className="block text-xs font-cinzel font-bold text-[#853638] uppercase mb-1.5">
+            <label htmlFor="rsvp-message" className="block text-xs font-cinzel font-bold text-[#853638] uppercase mb-1.5">
               Ucapan &amp; Doa
             </label>
             <textarea
+              id="rsvp-message"
               required
               rows={3}
               value={message}
@@ -213,12 +237,13 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ guestName }) => {
 
           {/* Attendance Selection */}
           <div>
-            <label className="block text-xs font-cinzel font-bold text-[#853638] uppercase mb-1.5">
+            <label htmlFor="rsvp-status" className="block text-xs font-cinzel font-bold text-[#853638] uppercase mb-1.5">
               Konfirmasi Kehadiran
             </label>
             <select
+              id="rsvp-status"
               value={status}
-              onChange={(e) => setStatus(e.target.value as any)}
+              onChange={(e) => setStatus(e.target.value as RSVPComment["status"])}
               className="w-full px-4 py-2.5 rounded-xl bg-[#F4EFE6]/90 border border-[#C5A880]/40 text-[#4A2022] font-sans text-xs sm:text-sm focus:outline-none focus:border-[#853638]"
             >
               <option value="Hadir">Hadir</option>
@@ -226,6 +251,24 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ guestName }) => {
               <option value="Masih ragu">Masih Ragu</option>
             </select>
           </div>
+
+          {status === "Hadir" && (
+            <div>
+              <label htmlFor="rsvp-guest-count" className="block text-xs font-cinzel font-bold text-[#853638] uppercase mb-1.5">
+                Jumlah Tamu yang Hadir
+              </label>
+              <input
+                id="rsvp-guest-count"
+                type="number"
+                min="1"
+                step="1"
+                required
+                value={guestCount}
+                onChange={(e) => setGuestCount(Number(e.target.value))}
+                className="w-full px-4 py-2.5 rounded-xl bg-[#F4EFE6]/90 border border-[#C5A880]/40 text-[#4A2022] font-sans text-xs sm:text-sm focus:outline-none focus:border-[#853638]"
+              />
+            </div>
+          )}
 
           {feedback && (
             <p className="text-xs font-sans text-center text-[#853638] font-semibold py-1">
@@ -279,6 +322,13 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ guestName }) => {
               <p className="font-sans text-xs text-[#5A383A] leading-relaxed">
                 {item.message}
               </p>
+              {(item.domicile || item.guestCount) && (
+                <p className="font-sans text-[10px] text-[#7D6B63]">
+                  {[item.domicile, item.guestCount && `${item.guestCount} tamu`]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </p>
+              )}
             </motion.div>
           ))}
         </div>

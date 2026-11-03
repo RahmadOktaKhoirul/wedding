@@ -91,5 +91,7 @@ export interface RSVPComment {
   name: string;
   message: string;
   status: "Hadir" | "Tidak hadir" | "Masih ragu";
+  guestCount?: number;
+  domicile?: string;
   createdAt?: any;
 }

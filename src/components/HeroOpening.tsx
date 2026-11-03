@@ -53,7 +53,7 @@ export const HeroOpening: React.FC<HeroOpeningProps> = ({ config, isOpened }) =>
       onClick={() => {
         if (!isVideoEnded) setIsVideoEnded(true);
       }}
-      className="relative w-full h-screen min-h-[600px] flex flex-col items-center justify-center text-center overflow-hidden bg-white cursor-pointer"
+      className="invitation-panel invitation-panel--hero relative w-full h-screen min-h-[600px] flex flex-col items-center justify-center text-center overflow-hidden bg-white cursor-pointer"
     >
       {/* Background Video (Fast-stream, Clean, Plays Once Without Loop) */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-white pointer-events-none">
@@ -143,11 +143,16 @@ export const HeroOpening: React.FC<HeroOpeningProps> = ({ config, isOpened }) =>
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.85 }}
                 className="flex flex-col items-center gap-1 cursor-pointer group"
-                onClick={() => {
-                  window.scrollTo({
-                    top: window.innerHeight,
-                    behavior: "smooth",
-                  });
+                onClick={(event) => {
+                  const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                    ? "auto"
+                    : "smooth";
+                  const main = event.currentTarget.closest("main");
+                  if (main && window.matchMedia("(min-width: 1024px)").matches) {
+                    main.scrollTo({ top: main.scrollTop + main.clientHeight, behavior });
+                  } else {
+                    window.scrollTo({ top: window.innerHeight, behavior });
+                  }
                 }}
               >
                 <span className="text-[10px] sm:text-[11px] font-cinzel tracking-[0.2em] text-[#853638] uppercase font-bold">

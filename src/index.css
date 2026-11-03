@@ -4,15 +4,15 @@
   /* Font Families */
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-cinzel: "Cinzel", Georgia, serif;
-  --font-script: "Pinyon Script", "Alex Brush", cursive;
-  --font-brush: "Alex Brush", "Great Vibes", cursive;
-  --font-sans: "Montserrat", "Plus Jakarta Sans", sans-serif;
+  --font-script: "Pinyon Script", cursive;
+  --font-sans: "Montserrat", sans-serif;
   
   /* Primary Colors - Vintage Burgundy */
   --color-maroon: #853638;
   --color-maroon-dark: #6d0e0f;
   --color-maroon-light: #995555;
   --color-maroon-deep: #2B1113;
+  --color-forest: #14271F;
   
   /* Accent Colors */
   --color-rose: #fdbcbc;
@@ -35,7 +35,7 @@
 html, body {
   overflow-x: hidden;
   max-width: 100vw;
-  background-color: #2B1113;
+  background-color: #14271F;
   color: #4A2022;
   font-family: var(--font-sans);
   touch-action: pan-x pan-y;
@@ -52,11 +52,7 @@ html, body {
 }
 
 .font-script {
-  font-family: "Pinyon Script", "Alex Brush", cursive;
-}
-
-.font-brush {
-  font-family: "Alex Brush", "Great Vibes", cursive;
+  font-family: "Pinyon Script", cursive;
 }
 
 .font-montserrat {
@@ -166,17 +162,104 @@ html, body {
 
 /* Glass Card / Frosted Paper Texture */
 .frosted-card {
-  background-color: rgba(250, 247, 242, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(197, 168, 128, 0.45);
-  box-shadow: 0 15px 35px -5px rgba(43, 17, 19, 0.12);
+  background-color: rgba(250, 247, 242, 0.64);
+  backdrop-filter: blur(18px) saturate(115%);
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  box-shadow: 0 16px 36px -18px rgba(43, 17, 19, 0.24);
 }
 
 .frosted-card-soft {
-  background-color: rgba(250, 247, 242, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(197, 168, 128, 0.35);
-  box-shadow: 0 10px 25px -5px rgba(43, 17, 19, 0.08);
+  background-color: rgba(250, 247, 242, 0.56);
+  backdrop-filter: blur(14px) saturate(110%);
+  -webkit-backdrop-filter: blur(14px) saturate(110%);
+  box-shadow: 0 12px 28px -18px rgba(43, 17, 19, 0.2);
+}
+
+.invitation-panel {
+  isolation: isolate;
+  background-color: transparent;
+  background-image:
+    var(--panel-background, url("/assets/background.webp"));
+  background-position: var(--panel-position, center);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.invitation-panel > img[src="/assets/flower.webp"] {
+  opacity: 0.45;
+}
+
+.invitation-panel--hero {
+  --panel-background: url("/assets/intro.webp");
+  --panel-position: center 42%;
+}
+
+.invitation-panel--quote {
+  --panel-background: url("/assets/background-mobile.webp");
+  --panel-position: center 24%;
+}
+
+.invitation-panel--couple {
+  --panel-position: center 30%;
+}
+
+.invitation-panel--countdown {
+  --panel-background: url("/assets/background-mobile.webp");
+  --panel-position: center 56%;
+}
+
+.invitation-panel--events {
+  --panel-position: center 70%;
+}
+
+.invitation-panel--story {
+  --panel-background: url("/assets/background-mobile.webp");
+  --panel-position: center 43%;
+}
+
+.invitation-panel--gallery {
+  --panel-position: center 80%;
+}
+
+.invitation-panel--gift {
+  --panel-background: url("/assets/background-mobile.webp");
+  --panel-position: center 66%;
+}
+
+.invitation-panel--rsvp {
+  --panel-position: center 51%;
+}
+
+.invitation-panel--closing {
+  --panel-background: url("/assets/intro.webp");
+  --panel-position: center 84%;
+}
+
+.cover-page {
+  background-color: #faf3e6;
+}
+
+.cover-page > picture img {
+  object-position: center 48%;
+}
+
+.cover-content {
+  text-shadow: 0 1px 10px rgba(250, 247, 242, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (min-width: 64rem) {
+  main > section {
+    flex-shrink: 0;
+  }
 }

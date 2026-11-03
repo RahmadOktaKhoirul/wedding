@@ -21,7 +21,7 @@ export const WEDDING_DATA: WeddingConfig = {
   },
   monogram: {
     brideInitial: "R",
-    groomInitial: "T",
+    groomInitial: "R",
   },
   countdownDate: "2026-10-02T08:00:00",
   weddingDateFormatted: "02 . 10 . 2026",
@@ -68,7 +68,7 @@ export const WEDDING_DATA: WeddingConfig = {
   loveStory: {
     title: "love story",
     quote: "Setiap Kisah Cinta Itu Indah,\nTapi Miliki Kamu Adalah Favoritku",
-    mainPhoto: "/assets/intro.webp",
+    mainPhoto: "/foto/IMG_0778.webp",
     stories: [
       {
         phase: "Perkenalan dan Pendekatan",
@@ -126,7 +126,7 @@ export const WEDDING_DATA: WeddingConfig = {
   closing: {
     quote:
       "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda berkenan hadir dan memberikan doa restunya untuk pernikahan kami.\n\nAtas doa & restunya, kami ucapkan terima kasih.",
-    photo: "/assets/intro.webp",
+    photo: "/foto/IMG_0778.webp",
   },
   audio: {
     src: "https://hi.punakawandigital.net/wp-content/uploads/2025/08/Donkgedank-GANGSINGAN-Backsound-Nusantara.mp3",

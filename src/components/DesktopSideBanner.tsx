@@ -10,22 +10,18 @@ export const DesktopSideBanner: React.FC<DesktopSideBannerProps> = ({
 }) => {
   return (
     <aside
-      className="hidden lg:flex flex-col justify-between w-[480px] xl:w-[560px] h-screen sticky top-0 p-12 text-[#FAF7F2] border-r border-[#C5A880]/30 overflow-hidden select-none bg-cover bg-center"
-      style={{ backgroundImage: "url('/assets/background.webp')" }}
+      className="hidden lg:flex flex-col justify-between w-[400px] xl:w-[480px] 2xl:w-[560px] h-screen sticky top-0 p-10 xl:p-12 text-[#FAF7F2] border-r border-[#C5A880]/30 overflow-hidden select-none bg-[#14271F]"
     >
-      {/* Dark Burgundy Overlay */}
-      <div className="absolute inset-0 bg-[#2B1113]/85 backdrop-blur-xs pointer-events-none" />
-
-      {/* Floating Flowers: Layer Paling Depan (z-20), Left Flipped, Right Natural */}
+      {/* Keep the floral details behind the text and portrait. */}
       <img
         src="/assets/flower.webp"
         alt="Ornament Top Left Flipped"
-        className="absolute z-20 -top-16 -left-16 w-72 opacity-80 pointer-events-none animate-float-left drop-shadow-xl"
+        className="absolute z-0 -top-16 -left-16 w-72 opacity-35 pointer-events-none animate-float-left drop-shadow-xl"
       />
       <img
         src="/assets/flower.webp"
         alt="Ornament Bottom Right"
-        className="absolute z-20 -bottom-16 -right-16 w-72 opacity-80 pointer-events-none animate-float-right drop-shadow-xl"
+        className="absolute z-0 -bottom-16 -right-16 w-72 opacity-35 pointer-events-none animate-float-right drop-shadow-xl"
       />
 
       {/* Top Header */}
@@ -37,26 +33,33 @@ export const DesktopSideBanner: React.FC<DesktopSideBannerProps> = ({
       </div>
 
       {/* Center Monogram & Couple Name */}
-      <div className="relative z-10 flex flex-col items-start my-auto">
-        <div className="relative h-28 flex items-center mb-6">
-          <span className="font-script text-8xl text-white/95 leading-none -mr-4 drop-shadow-md">
-            {config.monogram.brideInitial}
-          </span>
-          <span className="font-script text-8xl text-[#C5A880] leading-none -ml-4 -mt-4 drop-shadow-md">
-            {config.monogram.groomInitial}
-          </span>
+      <div className="relative z-10 flex flex-col items-center my-auto text-center">
+        <div className="relative w-full max-w-[330px] h-[min(36vh,340px)] min-h-[220px] mb-6 overflow-hidden rounded-t-full rounded-b-2xl border border-[#C5A880]/70 bg-[#0B1B15] shadow-2xl">
+          <img
+            src={config.gallery.photos[0] || config.closing.photo || "/assets/intro.webp"}
+            alt={`${config.bride.nickname} dan ${config.groom.nickname}`}
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#14271F]/55 via-transparent to-transparent" />
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+            <span className="font-script text-6xl text-white/95 leading-none -mr-3 drop-shadow-md">
+              {config.monogram.brideInitial}
+            </span>
+            <span className="font-script text-6xl text-[#C5A880] leading-none -ml-3 -mt-3 drop-shadow-md">
+              {config.monogram.groomInitial}
+            </span>
+          </div>
         </div>
 
         {/* Decorative Divider */}
-        <div className="w-16 h-[1px] divider-ornament mb-4" />
+        <div className="w-16 h-[1px] divider-ornament mb-4 mx-auto" />
 
         <p className="font-cinzel text-xs tracking-[0.35em] uppercase text-[#E5D9C8] mb-2 font-semibold">
           The Wedding Of
         </p>
 
-        <h1 className="font-cormorant italic text-5xl xl:text-6xl text-white font-bold tracking-wide mb-4 leading-tight drop-shadow-lg">
-          {config.bride.nickname} &amp; <br />
-          {config.groom.nickname}
+        <h1 className="font-cormorant italic text-4xl xl:text-5xl text-white font-bold tracking-wide mb-4 leading-tight drop-shadow-lg">
+          {config.bride.nickname} &amp; {config.groom.nickname}
         </h1>
 
         <div className="inline-block px-5 py-1.5 rounded-full border border-[#C5A880]/70 bg-[#1A0A0B]/60 backdrop-blur-md shadow-lg mt-2">

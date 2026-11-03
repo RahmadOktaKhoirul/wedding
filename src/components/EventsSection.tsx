@@ -90,17 +90,17 @@ const EventCard: React.FC<{ event: EventDetail; delay?: number }> = ({
 
 export const EventsSection: React.FC<EventsSectionProps> = ({ events }) => {
   return (
-    <section className="relative w-full py-16 px-4 sm:px-8 bg-transparent text-center overflow-hidden">
+    <section className="invitation-panel invitation-panel--events relative w-full py-16 px-4 sm:px-8 text-center overflow-hidden">
       {/* Background Ornaments: Layer Paling Depan (z-20), Left Flipped, Right Natural */}
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Left Flipped"
-        className="absolute z-20 top-1/4 -left-12 sm:-left-16 w-48 sm:w-64 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
+        className="absolute z-0 top-1/4 -left-12 sm:-left-16 w-48 sm:w-64 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
       />
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Right"
-        className="absolute z-20 bottom-1/4 -right-12 sm:-right-16 w-48 sm:w-64 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
+        className="absolute z-0 bottom-1/4 -right-12 sm:-right-16 w-48 sm:w-64 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
       />
 
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">

@@ -24,7 +24,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ photos }) => {
   };
 
   return (
-    <section className="relative w-full py-16 px-4 sm:px-8 bg-transparent text-center overflow-hidden">
+    <section className="invitation-panel invitation-panel--gallery relative w-full py-16 px-4 sm:px-8 text-center overflow-hidden">
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
         {/* Title */}
         <motion.div

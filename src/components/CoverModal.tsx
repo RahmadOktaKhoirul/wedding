@@ -22,7 +22,7 @@ export const CoverModal: React.FC<CoverModalProps> = ({
     <motion.div
       initial={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: "-100%", transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } }}
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
+      className="cover-page fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
     >
       {/* Background Image: Mobile Fitted + Desktop */}
       <picture className="absolute inset-0 z-0 block w-full h-full pointer-events-none">
@@ -34,27 +34,11 @@ export const CoverModal: React.FC<CoverModalProps> = ({
         />
       </picture>
 
-      {/* Dark Vignette Overlay for Depth */}
-      <div className="absolute inset-0 z-0 bg-[#2B1113]/60 backdrop-blur-xs pointer-events-none" />
-
-      {/* Floating Corner Flowers: Layer Paling Depan (z-30), Left Flipped, Right Natural */}
-      <img
-        src="/assets/flower.webp"
-        alt="Ornament Left Flipped"
-        className="absolute z-30 -top-8 -left-8 w-44 sm:w-60 opacity-90 pointer-events-none animate-float-left drop-shadow-xl"
-      />
-      <img
-        src="/assets/flower.webp"
-        alt="Ornament Right"
-        className="absolute z-30 -bottom-8 -right-8 w-44 sm:w-60 opacity-90 pointer-events-none animate-float-right drop-shadow-xl"
-      />
-
-      {/* Center Frosted Glass Card */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 max-w-sm sm:max-w-md w-full mx-4 p-8 sm:p-10 text-center rounded-3xl frosted-card shadow-2xl"
+        className="cover-content frosted-card relative z-10 max-w-sm sm:max-w-md w-full mx-4 px-8 py-10 sm:px-10 text-center"
       >
         {/* Monogram / Inisial with Gradient */}
         <motion.div

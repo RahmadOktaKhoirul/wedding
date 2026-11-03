@@ -22,17 +22,17 @@ export const WeddingGiftSection: React.FC<WeddingGiftSectionProps> = ({
   };
 
   return (
-    <section className="relative w-full py-16 px-4 sm:px-8 bg-transparent text-center overflow-hidden">
+    <section className="invitation-panel invitation-panel--gift relative w-full py-16 px-4 sm:px-8 text-center overflow-hidden">
       {/* Front Layer Flower Ornaments (z-20) */}
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Left Flipped"
-        className="absolute z-20 top-1/2 -translate-y-1/2 -left-10 sm:-left-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
+        className="absolute z-0 top-1/2 -translate-y-1/2 -left-10 sm:-left-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-left drop-shadow-md"
       />
       <img
         src="/assets/flower.webp"
         alt="Floral Decor Right"
-        className="absolute z-20 top-1/2 -translate-y-1/2 -right-10 sm:-right-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
+        className="absolute z-0 top-1/2 -translate-y-1/2 -right-10 sm:-right-12 w-40 sm:w-52 opacity-90 pointer-events-none animate-float-right drop-shadow-md"
       />
 
       <motion.div
